@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class ConnectionUtil {
 	static String hostName="localhost";
-	static String dbName="Doan_Nhom5_QLHDSV";
+	static String dbName="test";
 	static String userName="root";
 	static String password="";
 	public ConnectionUtil() {
