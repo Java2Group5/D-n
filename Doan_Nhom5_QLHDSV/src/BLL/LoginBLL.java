@@ -6,16 +6,16 @@ import DAL.LoginDAL;
 import DTO.LoginDTO;
 
 public class LoginBLL {
-	public ResultSet login(LoginDTO loginDTO) {
-		ResultSet result=null;
+	public int login(LoginDTO loginDTO) {
+		int role=0;
 		if (loginDTO.getID().equals(""))
-			return result;
+			return role;
 		else if (loginDTO.getPassword().equals(""))
-			return result;
+			return role;
 		else {
 			LoginDAL loginDAL=new LoginDAL();
-			result= loginDAL.getUserIDByNameNPass(loginDTO);
+			role= loginDAL.login(loginDTO);
 		}
-		return result;
+		return role;
 	}
 }

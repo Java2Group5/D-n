@@ -93,14 +93,18 @@ public class F_Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				LoginDTO loginDTO =new LoginDTO(txtUserName.getText(),txtPassword.getText());
 				LoginBLL loginBLL=new LoginBLL();
-				if (loginBLL.login(loginDTO)== null)
-				{
-					JOptionPane.showMessageDialog(panel, "Login fail!", "About", 
-                            JOptionPane.INFORMATION_MESSAGE);
-				}else {
+				int role =loginBLL.login(loginDTO);
+				if (role!=0){
 					JOptionPane.showMessageDialog(panel, "Login success!", "About", 
                             JOptionPane.INFORMATION_MESSAGE);
+				}else{
+					JOptionPane.showMessageDialog(panel, "Login fail", "About", 
+                            JOptionPane.INFORMATION_MESSAGE);
 				}
+					
+				
+					
+				
 			}
 			private void setBackground(Color blue) {
 				// TODO Auto-generated method stub
