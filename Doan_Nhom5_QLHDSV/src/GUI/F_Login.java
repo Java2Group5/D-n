@@ -101,10 +101,6 @@ public class F_Login extends JFrame {
 					JOptionPane.showMessageDialog(panel, "Login fail", "About", 
                             JOptionPane.INFORMATION_MESSAGE);
 				}
-					
-				
-					
-				
 			}
 			private void setBackground(Color blue) {
 				// TODO Auto-generated method stub

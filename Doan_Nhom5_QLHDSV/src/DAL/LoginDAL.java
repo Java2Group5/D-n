@@ -12,8 +12,11 @@ public class LoginDAL {
 	public int login(LoginDTO loginDTO){
 		ResultSet result;
 		int role=0;
-		String sql="SELECT * FROM login WHERE id= ? and password = ?";
+		String sql;
+		if (loginDTO.getID()=="admin"&&loginDTO.getPassword()=="nhom5")
+			return 1;
 		try {
+			sql="SELECT * FROM student WHERE id= ? and password = ?";
 			ConnectionUtil conUtil=new ConnectionUtil();
 			con=conUtil.getConnection();
 			preparedStatement = con.prepareStatement(sql);
@@ -21,11 +24,22 @@ public class LoginDAL {
 			preparedStatement.setString(2, loginDTO.getPassword());
 			result = preparedStatement.executeQuery();
 			if(result.first())
-				role = result.getInt(3);
+				role=2;
 			result.close();
-		} catch(SQLException e){
-			e.printStackTrace();	
-			}
+		} catch(SQLException e1){
+			try {
+				sql="SELECT * FROM teacher WHERE id= ? and password = ?";
+				ConnectionUtil conUtil=new ConnectionUtil();
+				con=conUtil.getConnection();
+				preparedStatement = con.prepareStatement(sql);
+				preparedStatement.setString(1, loginDTO.getID());
+				preparedStatement.setString(2, loginDTO.getPassword());
+				result = preparedStatement.executeQuery();
+				if(result.first())
+					role=3;
+				result.close();
+			} catch(SQLException e2){}
+			} 
 		finally {
 			try {
 				con.close();
